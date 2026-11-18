@@ -1,0 +1,13 @@
+project_id,student_id,student_name,class_name,section,project_title,domain,technologies_used,status,created_at,total_milestones,completed_milestones,progress_pct
+1,732925ITR002,Abhishek.R,25IT3A,A,Student Project and Skill Tracking System,Data Science,"Java, Python, SQLite, Pandas, Matplotlib",Completed,2026-08-10,5,5,100.0
+2,732925ITR032,Dharun Kumar.M,25IT3A,A,Campus Event Hub & Ticketing Platform,Web Development,"React.js, Node.js, Express, MongoDB",Completed,2026-08-12,4,4,100.0
+3,732925ITR062,Kavya.S,25IT3A,A,Automated Library Asset Management,Web Development,"Java, Spring Boot, MySQL, Thymeleaf",In Progress,2026-08-15,4,3,75.0
+4,732925ITR092,Manojkumar.P,25IT3B,B,Smart Crop Disease Detection using CNN,Artificial Intelligence,"Python, TensorFlow, OpenCV, Flask",Completed,2026-08-18,4,4,100.0
+5,732925ITRL02,Naveen.K,25IT3B,B,VCET Bus Transport Tracking Mobile App,Mobile Applications,"Flutter, Dart, Firebase, Google Maps API",In Progress,2026-08-20,4,2,50.0
+6,732925ITR015,Ananya.V,25IT3A,A,Customer Sentiment Analysis for E-Commerce,Data Science,"Python, NLTK, Scikit-learn, Streamlit",Under Review,2026-08-22,0,0,0.0
+7,732925ITR028,Bala Murugan.T,25IT3A,A,Secure Healthcare Record Management System,Cybersecurity,"Java, Cryptography API, SQLite, JavaFX",In Progress,2026-08-25,0,0,0.0
+8,732925ITR045,Gokul.N,25IT3A,A,IoT Smart Energy Metering & Power Leakage Alert,Internet of Things,"C++, ESP-IDF, MQTT, Node-RED, Python",Completed,2026-08-28,3,3,100.0
+9,732925ITR077,Priya.M,25IT3B,B,Predictive Student Placement Analytics,Data Science,"Python, Pandas, Seaborn, XGBoost",Completed,2026-09-01,3,3,100.0
+10,732925ITR088,Rohit.S,25IT3B,B,Containerized Microservices CI/CD Pipeline,Cloud Computing,"Docker, Kubernetes, GitHub Actions, Linux",Under Review,2026-09-05,0,0,0.0
+11,732925ITR105,Sneha.R,25IT3B,B,Community Food Redistribution Network,Web Development,"JavaScript, React, Node.js, PostgreSQL",In Progress,2026-09-10,0,0,0.0
+12,732925ITR118,Vigneshwaran.A,25IT3B,B,Network Intrusion Detection System (NIDS),Cybersecurity,"C++, Python, Scapy, Snort Rules",Proposed,2026-09-15,0,0,0.0

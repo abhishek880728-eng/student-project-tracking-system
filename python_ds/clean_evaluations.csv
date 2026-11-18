@@ -1,0 +1,26 @@
+eval_id,project_id,project_title,domain,component_name,max_marks,obtained_marks,evaluator_name,evaluation_date
+1,1,Student Project and Skill Tracking System,Data Science,Review 1 - Problem & Design,20.0,19.5,Dr. S. Murugesan (HoD/IT),2026-09-18
+2,1,Student Project and Skill Tracking System,Data Science,Review 2 - Implementation,20.0,19.0,Prof. P. Ramya (AP/IT),2026-10-12
+3,1,Student Project and Skill Tracking System,Data Science,Code Quality & Git,20.0,19.5,Prof. T. Senthil (AP/IT),2026-10-25
+4,1,Student Project and Skill Tracking System,Data Science,Testing & Verification,20.0,19.0,Prof. P. Ramya (AP/IT),2026-11-05
+5,1,Student Project and Skill Tracking System,Data Science,Final Presentation & Viva,20.0,19.5,Dr. S. Murugesan (HoD/IT),2026-11-16
+6,2,Campus Event Hub & Ticketing Platform,Web Development,Review 1 - Problem & Design,20.0,18.0,Dr. S. Murugesan (HoD/IT),2026-09-18
+7,2,Campus Event Hub & Ticketing Platform,Web Development,Review 2 - Implementation,20.0,18.5,Prof. P. Ramya (AP/IT),2026-10-12
+8,2,Campus Event Hub & Ticketing Platform,Web Development,Code Quality & Git,20.0,17.5,Prof. T. Senthil (AP/IT),2026-10-25
+9,2,Campus Event Hub & Ticketing Platform,Web Development,Testing & Verification,20.0,18.0,Prof. P. Ramya (AP/IT),2026-11-05
+10,2,Campus Event Hub & Ticketing Platform,Web Development,Final Presentation & Viva,20.0,18.5,Dr. S. Murugesan (HoD/IT),2026-11-16
+11,4,Smart Crop Disease Detection using CNN,Artificial Intelligence,Review 1 - Problem & Design,20.0,18.5,Dr. S. Murugesan (HoD/IT),2026-09-18
+12,4,Smart Crop Disease Detection using CNN,Artificial Intelligence,Review 2 - Implementation,20.0,19.0,Prof. P. Ramya (AP/IT),2026-10-12
+13,4,Smart Crop Disease Detection using CNN,Artificial Intelligence,Code Quality & Git,20.0,18.0,Prof. T. Senthil (AP/IT),2026-10-25
+14,4,Smart Crop Disease Detection using CNN,Artificial Intelligence,Testing & Verification,20.0,18.5,Prof. P. Ramya (AP/IT),2026-11-05
+15,4,Smart Crop Disease Detection using CNN,Artificial Intelligence,Final Presentation & Viva,20.0,19.0,Dr. S. Murugesan (HoD/IT),2026-11-16
+16,8,IoT Smart Energy Metering & Power Leakage Alert,Internet of Things,Review 1 - Problem & Design,20.0,17.0,Dr. S. Murugesan (HoD/IT),2026-09-18
+17,8,IoT Smart Energy Metering & Power Leakage Alert,Internet of Things,Review 2 - Implementation,20.0,17.5,Prof. P. Ramya (AP/IT),2026-10-12
+18,8,IoT Smart Energy Metering & Power Leakage Alert,Internet of Things,Code Quality & Git,20.0,16.5,Prof. T. Senthil (AP/IT),2026-10-25
+19,8,IoT Smart Energy Metering & Power Leakage Alert,Internet of Things,Testing & Verification,20.0,17.0,Prof. P. Ramya (AP/IT),2026-11-05
+20,8,IoT Smart Energy Metering & Power Leakage Alert,Internet of Things,Final Presentation & Viva,20.0,18.0,Dr. S. Murugesan (HoD/IT),2026-11-16
+21,9,Predictive Student Placement Analytics,Data Science,Review 1 - Problem & Design,20.0,18.5,Dr. S. Murugesan (HoD/IT),2026-09-18
+22,9,Predictive Student Placement Analytics,Data Science,Review 2 - Implementation,20.0,18.0,Prof. P. Ramya (AP/IT),2026-10-12
+23,9,Predictive Student Placement Analytics,Data Science,Code Quality & Git,20.0,18.0,Prof. T. Senthil (AP/IT),2026-10-25
+24,9,Predictive Student Placement Analytics,Data Science,Testing & Verification,20.0,17.5,Prof. P. Ramya (AP/IT),2026-11-05
+25,9,Predictive Student Placement Analytics,Data Science,Final Presentation & Viva,20.0,18.5,Dr. S. Murugesan (HoD/IT),2026-11-16

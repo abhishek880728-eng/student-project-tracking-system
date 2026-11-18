@@ -1,0 +1,90 @@
+========================================================================================
+VELALAR COLLEGE OF ENGINEERING AND TECHNOLOGY, ERODE - 12
+DEPARTMENT OF INFORMATION TECHNOLOGY
+Academic Year: 2026-27 (ODD) | Class: 25IT3A&B
+Activity: Project-Based Assessment - Scenario 2
+Student: Abhishek.R | Register No: 732925ITR002 | Class: 25IT3A (Section A)
+========================================================================================
+SAMPLE INPUT SEQUENCES FOR SYSTEM DEMONSTRATION & EVALUATION
+========================================================================================
+
+----------------------------------------------------------------------------------------
+SCENARIO A: Automated Verification Run (Non-Interactive)
+----------------------------------------------------------------------------------------
+Command to execute:
+java -cp "bin;lib/*" com.vcet.tracking.Main --demo
+
+Expected Action:
+Instantly retrieves and renders:
+  1. Complete Roster of 12 Students with their registered technical skills.
+  2. All 12 Mini-Projects categorized with domains and milestone completion rates.
+  3. Detailed Dossier for Project #1 (Abhishek.R) with 5 milestones and 5 evaluation components (96.5%).
+  4. Automated Skill Gap Analysis for Project #1.
+  5. Department Executive Dashboard with completion ratios and average marks.
+
+----------------------------------------------------------------------------------------
+SCENARIO B: Register a New Student Profile & Assign Technical Skills (Menu Option 2)
+----------------------------------------------------------------------------------------
+Input sequence:
+2
+732925ITR150
+Karthik Raja.M
+karthik.m@vcet.ac.in
+Information Technology
+25IT3A
+A
+2025-2029
+y
+1
+Advanced
+2
+Intermediate
+0
+
+----------------------------------------------------------------------------------------
+SCENARIO C: Register a New Mini-Project with Automatic Milestones (Menu Option 4)
+----------------------------------------------------------------------------------------
+Input sequence:
+4
+732925ITR150
+Autonomous Drone Navigation & Obstacle Avoidance
+Artificial Intelligence
+Deep reinforcement learning agent for indoor drone navigation using LiDAR and ROS.
+Python, ROS2, PyTorch, OpenCV
+
+----------------------------------------------------------------------------------------
+SCENARIO D: Update a Project Milestone Submission Status (Menu Option 5)
+----------------------------------------------------------------------------------------
+Input sequence:
+5
+13
+61
+Completed
+2026-11-17
+
+----------------------------------------------------------------------------------------
+SCENARIO E: Record Component Evaluation Marks with Feedback (Menu Option 6)
+----------------------------------------------------------------------------------------
+Input sequence:
+6
+1
+1
+20.0
+19.5
+Dr. S. Murugesan (HoD/IT)
+Exemplary requirements specification, complete 3NF relational schema, and clear architecture.
+
+----------------------------------------------------------------------------------------
+SCENARIO F: Filter Projects by Engineering Domain (Menu Option 3)
+----------------------------------------------------------------------------------------
+Input sequence:
+3
+2
+Data Science
+
+----------------------------------------------------------------------------------------
+SCENARIO G: View Detailed Project Dossier & Skill Gap Detection (Menu Option 7)
+----------------------------------------------------------------------------------------
+Input sequence:
+7
+1

@@ -1,0 +1,31 @@
+student_id,student_name,skill_id,skill_name,skill_category,proficiency_level
+732925ITR002,Abhishek.R,11,Pandas / NumPy,AI / ML,Advanced
+732925ITR092,Manojkumar.P,11,Pandas / NumPy,AI / ML,Advanced
+732925ITR077,Priya.M,11,Pandas / NumPy,AI / ML,Advanced
+732925ITR092,Manojkumar.P,10,TensorFlow / PyTorch,AI / ML,Advanced
+732925ITR015,Ananya.V,10,TensorFlow / PyTorch,AI / ML,Intermediate
+732925ITR045,Gokul.N,6,MongoDB,Database,Intermediate
+732925ITR002,Abhishek.R,5,SQL,Database,Intermediate
+732925ITR062,Kavya.S,5,SQL,Database,Advanced
+732925ITR028,Bala Murugan.T,5,SQL,Database,Intermediate
+732925ITR088,Rohit.S,12,Docker,DevOps / Tools,Intermediate
+732925ITR002,Abhishek.R,13,Git / GitHub,DevOps / Tools,Intermediate
+732925ITR088,Rohit.S,13,Git / GitHub,DevOps / Tools,Advanced
+732925ITR032,Dharun Kumar.M,8,Node.js,Framework / Web,Intermediate
+732925ITR032,Dharun Kumar.M,7,React.js,Framework / Web,Advanced
+732925ITR045,Gokul.N,7,React.js,Framework / Web,Advanced
+732925ITR105,Sneha.R,7,React.js,Framework / Web,Intermediate
+732925ITR062,Kavya.S,9,Spring Boot,Framework / Web,Intermediate
+732925ITRL02,Naveen.K,14,Flutter,Mobile App,Advanced
+732925ITR118,Vigneshwaran.A,3,C++,Programming Language,Advanced
+732925ITR002,Abhishek.R,1,Java,Programming Language,Advanced
+732925ITR062,Kavya.S,1,Java,Programming Language,Intermediate
+732925ITR028,Bala Murugan.T,1,Java,Programming Language,Advanced
+732925ITR118,Vigneshwaran.A,1,Java,Programming Language,Intermediate
+732925ITRL02,Naveen.K,4,JavaScript,Programming Language,Intermediate
+732925ITR105,Sneha.R,4,JavaScript,Programming Language,Advanced
+732925ITR002,Abhishek.R,2,Python,Programming Language,Advanced
+732925ITR032,Dharun Kumar.M,2,Python,Programming Language,Intermediate
+732925ITR092,Manojkumar.P,2,Python,Programming Language,Advanced
+732925ITR015,Ananya.V,2,Python,Programming Language,Intermediate
+732925ITR077,Priya.M,2,Python,Programming Language,Advanced

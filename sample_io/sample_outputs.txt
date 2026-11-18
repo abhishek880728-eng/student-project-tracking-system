@@ -1,0 +1,102 @@
+﻿
+=====================================================================================
+  AUTOMATED DEMONSTRATION & VERIFICATION RUN
+  Scenario 2: Student Project and Skill Tracking System
+  Author: Abhishek.R | Register No: 732925ITR002 | Class: 25IT3A
+=====================================================================================
+
+>>> TEST 1: Retrieve Roster of Students & Skills
+
+=====================================================================================
+  VCET IT :: STUDENT ROSTER & SKILL PROFILES
+=====================================================================================
+Register No     | Student Name       | Class-Sec  | Skills & Proficiency            
+-------------------------------------------------------------------------------------
+732925ITR002    | Abhishek.R         | 25IT3A-A   | Git / GitHub (Int), Java (Adv), Pandas / NumPy (Adv), Python (Adv), SQL (Int)
+732925ITR015    | Ananya.V           | 25IT3A-A   | Python (Int), TensorFlow / PyTorch (Int)
+732925ITR028    | Bala Murugan.T     | 25IT3A-A   | Java (Adv), SQL (Int)           
+732925ITR032    | Dharun Kumar.M     | 25IT3A-A   | Node.js (Int), Python (Int), React.js (Adv)
+732925ITR045    | Gokul.N            | 25IT3A-A   | MongoDB (Int), React.js (Adv)   
+732925ITR062    | Kavya.S            | 25IT3A-A   | Java (Int), SQL (Adv), Spring Boot (Int)
+732925ITR077    | Priya.M            | 25IT3B-B   | Pandas / NumPy (Adv), Python (Adv)
+732925ITR088    | Rohit.S            | 25IT3B-B   | Docker (Int), Git / GitHub (Adv)
+732925ITR092    | Manojkumar.P       | 25IT3B-B   | Pandas / NumPy (Adv), Python (Adv), TensorFlow / PyTorch (Adv)
+732925ITR105    | Sneha.R            | 25IT3B-B   | JavaScript (Adv), React.js (Int)
+732925ITR118    | Vigneshwaran.A     | 25IT3B-B   | C++ (Adv), Java (Int)           
+732925ITRL02    | Naveen.K           | 25IT3B-B   | Flutter (Adv), JavaScript (Int) 
+-------------------------------------------------------------------------------------
+Total Students Listed: 12
+
+>>> TEST 2: Retrieve All Registered Projects
+
+=====================================================================================
+  VCET IT :: STUDENT PROJECTS PROGRESS OVERVIEW
+=====================================================================================
+ID   | Student ID     | Project Title                | Domain             | Status       | Prog% 
+-------------------------------------------------------------------------------------
+1    | 732925ITR002   | Student Project and Skil...  | Data Science       | Completed    | 100.0%
+2    | 732925ITR032   | Campus Event Hub & Ticke...  | Web Development    | Completed    | 100.0%
+3    | 732925ITR062   | Automated Library Asset ...  | Web Development    | In Progress  |  75.0%
+4    | 732925ITR092   | Smart Crop Disease Detec...  | Artificial Intelligence | Completed    | 100.0%
+5    | 732925ITRL02   | VCET Bus Transport Track...  | Mobile Applications | In Progress  |  50.0%
+6    | 732925ITR015   | Customer Sentiment Analy...  | Data Science       | Under Review |   0.0%
+7    | 732925ITR028   | Secure Healthcare Record...  | Cybersecurity      | In Progress  |   0.0%
+8    | 732925ITR045   | IoT Smart Energy Meterin...  | Internet of Things | Completed    | 100.0%
+9    | 732925ITR077   | Predictive Student Place...  | Data Science       | Completed    | 100.0%
+10   | 732925ITR088   | Containerized Microservi...  | Cloud Computing    | Under Review |   0.0%
+11   | 732925ITR105   | Community Food Redistrib...  | Web Development    | In Progress  |   0.0%
+12   | 732925ITR118   | Network Intrusion Detect...  | Cybersecurity      | Proposed     |   0.0%
+-------------------------------------------------------------------------------------
+Total Projects Listed: 12
+
+>>> TEST 3: Inspect Project #1 (Abhishek.R) Dossier & Skill Gap Analysis
+
+=====================================================================================
+  VCET IT :: DETAILED PROJECT DOSSIER - #1
+=====================================================================================
+Project Title  : Student Project and Skill Tracking System
+Student Author : Abhishek.R (732925ITR002)
+Domain Area    : Data Science
+Lifecycle State: Completed (Progress: 100.0%)
+Tech Stack     : Java, Python, SQLite, Pandas, Matplotlib
+Description    : Automated portal to monitor student mini-projects, track competencies, and perform descriptive/predictive analytics on skill gaps.
+
+[+] Project Milestones & Deadlines:
+    ID   | Milestone Name                      | Due Date     | Submitted    | Status    
+    ------------------------------------------------------------------------------
+    1    | SRS & Requirements Specification    | 2026-08-25   | 2026-08-24   | Completed 
+    2    | UML Design & Database Schema        | 2026-09-15   | 2026-09-14   | Completed 
+    3    | Java Application Implementation     | 2026-10-10   | 2026-10-08   | Completed 
+    4    | Python Data Analytics & Visualizations | 2026-10-30   | 2026-10-28   | Completed 
+    5    | Testing & GitHub Documentation      | 2026-11-15   | 2026-11-14   | Completed 
+
+[+] Evaluation Marks by Component (Max 100):
+    Component                        | Marks        | Evaluator              | Comments       
+    ----------------------------------------------------------------------------------
+    Review 1 - Problem & Design      | 19.5 / 20.0 | Dr. S. Murugesan (HoD/IT) | Exemplary SRS, comprehensive 3NF relational schema, and clear architectural diagrams.
+    Review 2 - Implementation        | 19.0 / 20.0 | Prof. P. Ramya (AP/IT) | Clean modular Java code with JDBC integration and robust exception handling.
+    Code Quality & Git               | 19.5 / 20.0 | Prof. T. Senthil (AP/IT) | Well-structured repository, meaningful commit messages, and clean code formatting.
+    Testing & Verification           | 19.0 / 20.0 | Prof. P. Ramya (AP/IT) | Detailed black-box and white-box test cases with boundary value coverage.
+    Final Presentation & Viva        | 19.5 / 20.0 | Dr. S. Murugesan (HoD/IT) | Outstanding viva delivery; excellent data science charts and visual insights.
+    ----------------------------------------------------------------------------------
+    AGGREGATE ASSESSMENT SCORE      : 96.5 / 100.0 (96.5%)
+
+[+] Skill Gap Analysis:
+    [!] Potential Skill Gaps Detected:
+        - Matplotlib (No verified student proficiency on record)
+=====================================================================================
+
+>>> TEST 4: Department Executive Dashboard Metrics
+
+=====================================================================================
+  VCET IT :: DEPARTMENT EXECUTIVE PROGRESS DASHBOARD
+=====================================================================================
+Total Registered Projects   : 12
+Completed Projects          : 5
+In Progress Projects        : 4
+Under Review Projects       : 2
+Proposed Projects           : 1
+Average Evaluation Mark     : 18.26 / 20.0
+=====================================================================================
+
+[+] Automated verification demonstration concluded with 100% success!
