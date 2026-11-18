@@ -83,6 +83,10 @@ d:\project 1\
 │       ├── 2_popular_technology_choices.png
 │       ├── 3_student_skill_distribution.png
 │       └── 4_domain_wise_marks_performance.png
+├── web\                                # Responsive Web Portal & Dashboard
+│   ├── index.html                      # Interactive Dashboard UI (Tailwind & Chart.js)
+│   └── server.py                       # Lightweight Python HTTP & REST API Server
+├── launch_website.bat                  # One-Click Local Web Portal Launcher
 ├── sample_io\                          # Sample Inputs and Captured Outputs
 │   ├── sample_inputs.txt               # Step-by-step menu input sequences
 │   └── sample_outputs.txt              # Captured terminal execution outputs
@@ -177,6 +181,18 @@ python python_ds/data_retrieval_and_analysis.py
 # 2. Generate and Update Publication Charts
 python python_ds/generate_visualizations.py
 ```
+
+---
+
+### Step 4: Launch Interactive Web Portal & Dashboard
+
+You can explore the system via the interactive web portal:
+* **Option A:** Double-click `launch_website.bat` or run:
+  ```bash
+  python web/server.py
+  ```
+  *(Automatically opens `http://localhost:8080` in your web browser with live SQLite database API connectivity).*
+* **Option B (Zero Server):** Simply double-click `web/index.html` to open directly in any browser with full embedded dataset support!
 
 ---
 
