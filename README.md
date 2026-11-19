@@ -29,7 +29,7 @@ The **Student Project and Skill Tracking System** resolves these challenges by p
 
 | Course Code | Course Title | Syllabus Units Covered | System Implementation Deliverables |
 |:---|:---|:---|:---|
-| **25ITT33** | **Software Engineering** | Units 1, 2, 3, 4 | SRS Document (IEEE 830), System Architecture, Use Case Modeling, Class Diagram, Sequence Diagrams, Testing Suite (Black-box & White-box test cases). |
+| **25ITT33** | **Software Engineering** | Units 1, 2, 3, 4, 5 | SRS Document (IEEE 830), System Architecture, Use Case Modeling, Class Diagram, Testing Suite (19 Test Cases), **Unit 5 Project Management (Lines of Code & COCOMO Estimation)**. |
 | **25ITT31** | **Database Management Systems** | Units 1, 2, 3 | ER Diagram, Relational Schema, 1NF/2NF/3NF/BCNF Normalization, DDL/DML SQL scripts, Analytical Joins and Subqueries. |
 | **25ITT32** | **Java Programming** | Units 1, 2, 3, 4, 5 | Modular OOP design, Model-DAO-Service architecture, Java JDBC connectivity, Collections framework, Exception handling, Console reporting. |
 | **25ITC31** | **Foundations of Data Science** | Units 1, 2, 3, 4, 5 | Data retrieval via `sqlite3`, missing value treatment, feature engineering (`progress_pct`), descriptive metrics (mean, std dev), Matplotlib visual charts. |
@@ -44,7 +44,11 @@ d:\project 1\
 │   ├── SRS.md                          # IEEE-830 Software Requirements Specification
 │   ├── SYSTEM_DESIGN.md                # System Architecture, UML Use Case, Class & Sequence Diagrams
 │   ├── DATABASE_DESIGN.md              # ER Diagram, Relational Model & 3NF/BCNF Normalization
-│   └── TESTING_DOCUMENT.md             # Verification & Validation: 19 Black/White-box Test Cases
+│   ├── TESTING_DOCUMENT.md             # Verification & Validation: 19 Black/White-box Test Cases
+│   └── LOC_METRICS_REPORT.md           # Unit 5 LOC, SLOC, and COCOMO Estimation Audit Report
+├── calculate_loc.py                    # Automated Lines of Code (LOC) & Metrics Calculator
+├── index.html                          # Root Web Portal for Instant GitHub Pages Hosting
+├── launch_website.bat                  # One-Click Local Web Portal Launcher
 ├── database\                           # Relational Database Storage & Scripts
 │   ├── schema.sql                      # DDL Schema Definition (Tables, Constraints, Indexes)
 │   ├── seed_data.sql                   # Realistic Seed Dataset (Students, Skills, Projects, Marks)
@@ -193,6 +197,37 @@ You can explore the system via the interactive web portal:
   ```
   *(Automatically opens `http://localhost:8080` in your web browser with live SQLite database API connectivity).*
 * **Option B (Zero Server):** Simply double-click `web/index.html` to open directly in any browser with full embedded dataset support!
+
+---
+
+### Step 5: Calculate Lines of Code (LOC) & Estimation Metrics (25ITT33 Unit 5)
+
+To audit and calculate the total lines of code and COCOMO estimation:
+```bash
+python calculate_loc.py
+```
+
+---
+
+## 📏 Lines of Code (LOC) & Software Metrics (25ITT33 Unit 5)
+
+| Category / Language | Files | Total LOC | Source Code (SLOC) | Comments (CLOC) | Blank Lines |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| **Java** | 12 | 1,487 | 1,221 | 62 | 204 |
+| **Web / HTML / JS** | 2 | 1,446 | 1,282 | 48 | 116 |
+| **Documentation (Markdown)** | 6 | 1,273 | 1,048 | 0 | 225 |
+| **Python** | 5 | 947 | 436 | 376 | 135 |
+| **Data / Config (JSON, CSV)** | 4 | 338 | 338 | 0 | 0 |
+| **SQL** | 2 | 254 | 190 | 41 | 23 |
+| **Batch Scripts** | 5 | 105 | 89 | 0 | 16 |
+| **GRAND TOTAL** | **36** | **5,850** | **4,604** | **527** | **719** |
+
+* **Basic COCOMO Estimation Model (Organic Mode):**
+  * Core Source Code Size: `3.129 KLOC`
+  * Estimated Effort: `7.95 Person-Months` ($E = 2.4 \times \text{KLOC}^{1.05}$)
+  * Estimated Development Duration: `5.50 Months` ($D = 2.5 \times E^{0.38}$)
+  * Recommended Staff Size: `1.45 Persons`
+  * Complete File Audit: Refer to [LOC_METRICS_REPORT.md](docs/LOC_METRICS_REPORT.md)
 
 ---
 
