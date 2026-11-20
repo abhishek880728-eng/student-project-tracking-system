@@ -77,6 +77,9 @@
         <button onclick="switchTab('docs')" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">
           📖 Coursework Docs
         </button>
+        <button onclick="switchTab('register')" class="tab-btn px-3.5 py-2 text-xs sm:text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm">
+          ➕ Register Student
+        </button>
       </div>
     </div>
   </nav>
@@ -271,22 +274,22 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
           <h4 class="text-sm font-bold text-slate-900 mb-2">1. Project Completion Rates & Lifecycle Status</h4>
-          <img src="../python_ds/visualizations/1_project_completion_rates.png" alt="Completion Rates" class="rounded-lg border border-slate-200 w-full">
+          <img src="python_ds/visualizations/1_project_completion_rates.png" alt="Completion Rates" class="rounded-lg border border-slate-200 w-full">
           <p class="text-xs text-slate-500 mt-2"><strong>Insight:</strong> 41.7% of projects achieved 100% completion, while 33.3% are active in progress.</p>
         </div>
         <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
           <h4 class="text-sm font-bold text-slate-900 mb-2">2. Popular Technology Choices Across Mini-Projects</h4>
-          <img src="../python_ds/visualizations/2_popular_technology_choices.png" alt="Popular Technologies" class="rounded-lg border border-slate-200 w-full">
+          <img src="python_ds/visualizations/2_popular_technology_choices.png" alt="Popular Technologies" class="rounded-lg border border-slate-200 w-full">
           <p class="text-xs text-slate-500 mt-2"><strong>Insight:</strong> Python and Java dominate student selections for enterprise backend & ML workloads.</p>
         </div>
         <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
           <h4 class="text-sm font-bold text-slate-900 mb-2">3. Student Technical Skill Distribution</h4>
-          <img src="../python_ds/visualizations/3_student_skill_distribution.png" alt="Skill Distribution" class="rounded-lg border border-slate-200 w-full">
+          <img src="python_ds/visualizations/3_student_skill_distribution.png" alt="Skill Distribution" class="rounded-lg border border-slate-200 w-full">
           <p class="text-xs text-slate-500 mt-2"><strong>Insight:</strong> High competency in Core PLs & AI/ML; Cloud & DevOps identified as key growth areas.</p>
         </div>
         <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
           <h4 class="text-sm font-bold text-slate-900 mb-2">4. Domain-Wise Evaluation Performance</h4>
-          <img src="../python_ds/visualizations/4_domain_wise_marks_performance.png" alt="Marks Performance" class="rounded-lg border border-slate-200 w-full">
+          <img src="python_ds/visualizations/4_domain_wise_marks_performance.png" alt="Marks Performance" class="rounded-lg border border-slate-200 w-full">
           <p class="text-xs text-slate-500 mt-2"><strong>Insight:</strong> Mean score of 18.26/20.0 surpasses the 18.0 departmental benchmark standard.</p>
         </div>
       </div>
@@ -300,9 +303,9 @@
           <h3 class="text-base font-bold text-slate-900 mt-2">IEEE-830 SRS & Testing Document</h3>
           <p class="text-xs text-slate-600 mt-1">Full requirements specification with 19/19 passed test cases covering Equivalence Partitioning & Boundary Value Analysis.</p>
           <div class="mt-4 flex gap-2">
-            <a href="../docs/SRS.md" target="_blank" class="text-xs font-semibold text-indigo-600 hover:underline">Read SRS.md →</a>
+            <a href="docs/SRS.md" target="_blank" class="text-xs font-semibold text-indigo-600 hover:underline">Read SRS.md →</a>
             <span class="text-slate-300">•</span>
-            <a href="../docs/TESTING_DOCUMENT.md" target="_blank" class="text-xs font-semibold text-indigo-600 hover:underline">Read Testing Suite →</a>
+            <a href="docs/TESTING_DOCUMENT.md" target="_blank" class="text-xs font-semibold text-indigo-600 hover:underline">Read Testing Suite →</a>
           </div>
         </div>
 
@@ -311,9 +314,9 @@
           <h3 class="text-base font-bold text-slate-900 mt-2">ER Diagram & 3NF/BCNF Normalization</h3>
           <p class="text-xs text-slate-600 mt-1">Formal mathematical normalization proof removing insertion, update, and deletion anomalies across 6 relational tables.</p>
           <div class="mt-4 flex gap-2">
-            <a href="../docs/DATABASE_DESIGN.md" target="_blank" class="text-xs font-semibold text-emerald-600 hover:underline">Read Database Design →</a>
+            <a href="docs/DATABASE_DESIGN.md" target="_blank" class="text-xs font-semibold text-emerald-600 hover:underline">Read Database Design →</a>
             <span class="text-slate-300">•</span>
-            <a href="../database/schema.sql" target="_blank" class="text-xs font-semibold text-emerald-600 hover:underline">View schema.sql →</a>
+            <a href="database/schema.sql" target="_blank" class="text-xs font-semibold text-emerald-600 hover:underline">View schema.sql →</a>
           </div>
         </div>
 
@@ -322,9 +325,9 @@
           <h3 class="text-base font-bold text-slate-900 mt-2">Modular OOP Architecture & JDBC</h3>
           <p class="text-xs text-slate-600 mt-1">Model-DAO-Service layered design with parameterized queries, input validation, and automatic milestone generators.</p>
           <div class="mt-4 flex gap-2">
-            <a href="../docs/SYSTEM_DESIGN.md" target="_blank" class="text-xs font-semibold text-blue-600 hover:underline">Read System Architecture →</a>
+            <a href="docs/SYSTEM_DESIGN.md" target="_blank" class="text-xs font-semibold text-blue-600 hover:underline">Read System Architecture →</a>
             <span class="text-slate-300">•</span>
-            <a href="../java_app/src/com/vcet/tracking/Main.java" target="_blank" class="text-xs font-semibold text-blue-600 hover:underline">View Main.java →</a>
+            <a href="java_app/src/com/vcet/tracking/Main.java" target="_blank" class="text-xs font-semibold text-blue-600 hover:underline">View Main.java →</a>
           </div>
         </div>
 
@@ -333,10 +336,111 @@
           <h3 class="text-base font-bold text-slate-900 mt-2">Python Wrangling & Jupyter Notebook</h3>
           <p class="text-xs text-slate-600 mt-1">Complete exploratory data analysis (EDA) pipeline covering Units 1 to 5 of the Foundations of Data Science curriculum.</p>
           <div class="mt-4 flex gap-2">
-            <a href="../python_ds/data_analysis.ipynb" target="_blank" class="text-xs font-semibold text-amber-600 hover:underline">Open Notebook (.ipynb) →</a>
+            <a href="python_ds/data_analysis.ipynb" target="_blank" class="text-xs font-semibold text-amber-600 hover:underline">Open Notebook (.ipynb) →</a>
             <span class="text-slate-300">•</span>
-            <a href="../python_ds/data_retrieval_and_analysis.py" target="_blank" class="text-xs font-semibold text-amber-600 hover:underline">View Python Script →</a>
+            <a href="python_ds/data_retrieval_and_analysis.py" target="_blank" class="text-xs font-semibold text-amber-600 hover:underline">View Python Script →</a>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 8: REGISTER STUDENT -->
+    <div id="tab-register" class="tab-content hidden space-y-6">
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+        <div class="flex items-center gap-3 mb-5 border-b border-slate-100 pb-4">
+          <div class="w-10 h-10 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-xl">➕</div>
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Register New Student</h2>
+            <p class="text-xs text-slate-500">Fill the form below to add a student to the tracking system (25IT3A / 25IT3B)</p>
+          </div>
+        </div>
+
+        <!-- Success / Error banner -->
+        <div id="regBanner" class="hidden mb-4 px-4 py-3 rounded-lg text-sm font-medium"></div>
+
+        <form id="regForm" onsubmit="submitRegistration(event)" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Register Number -->
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-slate-700 uppercase tracking-wider">Register Number <span class="text-red-500">*</span></label>
+            <input type="text" id="regId" placeholder="e.g. 732925ITR130" required
+              class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" />
+          </div>
+          <!-- Full Name -->
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-slate-700 uppercase tracking-wider">Full Name <span class="text-red-500">*</span></label>
+            <input type="text" id="regName" placeholder="e.g. Ravi.K" required
+              class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" />
+          </div>
+          <!-- Email -->
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-slate-700 uppercase tracking-wider">Email Address <span class="text-red-500">*</span></label>
+            <input type="email" id="regEmail" placeholder="e.g. ravi.k@vcet.ac.in" required
+              class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" />
+          </div>
+          <!-- Department -->
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-slate-700 uppercase tracking-wider">Department</label>
+            <input type="text" id="regDept" value="Information Technology" readonly
+              class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-500 bg-slate-50 cursor-not-allowed" />
+          </div>
+          <!-- Class -->
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-slate-700 uppercase tracking-wider">Class Name</label>
+            <select id="regClass" class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
+              <option value="25IT3A">25IT3A</option>
+              <option value="25IT3B">25IT3B</option>
+            </select>
+          </div>
+          <!-- Section -->
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-slate-700 uppercase tracking-wider">Section</label>
+            <select id="regSection" class="border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
+              <option value="A">A</option>
+              <option value="B">B</option>
+            </select>
+          </div>
+          <!-- Batch Year -->
+          <div class="flex flex-col gap-1 md:col-span-2">
+            <label class="text-xs font-semibold text-slate-700 uppercase tracking-wider">Batch Year</label>
+            <input type="text" id="regBatch" value="2025-2029" readonly
+              class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-500 bg-slate-50 cursor-not-allowed" />
+          </div>
+
+          <!-- Skill Assignment -->
+          <div class="md:col-span-2">
+            <p class="text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Assign Initial Skills (Optional)</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2" id="skillCheckboxes">
+              <!-- Dynamically populated by JS -->
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="md:col-span-2 flex justify-end">
+            <button type="submit"
+              class="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow transition">
+              ➕ Register Student
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Registered Students Preview -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+        <h3 class="text-sm font-bold text-slate-800 mb-3">📋 All Registered Students (Live Preview)</h3>
+        <div id="regStudentList" class="overflow-x-auto">
+          <table class="w-full text-xs text-left">
+            <thead>
+              <tr class="bg-slate-50 text-slate-500 uppercase text-[11px] tracking-wider">
+                <th class="px-3 py-2 rounded-l-lg">Reg. No</th>
+                <th class="px-3 py-2">Name</th>
+                <th class="px-3 py-2">Class</th>
+                <th class="px-3 py-2">Section</th>
+                <th class="px-3 py-2 rounded-r-lg">Skills</th>
+              </tr>
+            </thead>
+            <tbody id="regStudentTbody" class="divide-y divide-slate-100">
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -391,7 +495,7 @@
     </div>
   </footer>
 
-  <!-- Embedded Project Dataset (Guarantees 100% offline functionality without server) -->
+  <!-- Embedded Project Dataset -->
   <script>
     const INITIAL_DATA = {
       students: [
@@ -475,11 +579,17 @@
       document.getElementById('tab-' + tabId).classList.remove('hidden');
 
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active', 'text-indigo-600', 'bg-indigo-50');
+        btn.classList.remove('active', 'text-indigo-600', 'bg-indigo-50', 'text-white', 'bg-indigo-600', 'hover:bg-indigo-700', 'shadow-sm');
         btn.classList.add('text-slate-600');
       });
       event.currentTarget.classList.add('active', 'text-indigo-600', 'bg-indigo-50');
       event.currentTarget.classList.remove('text-slate-600');
+
+      // If register tab opened, populate skill checkboxes & refresh student list
+      if (tabId === 'register') {
+        populateSkillCheckboxes();
+        renderRegStudentList();
+      }
     }
 
     function renderProjects() {
@@ -717,7 +827,127 @@
           }
         }
       });
+
+      // Render registration student list on page load
+      renderRegStudentList();
     });
+
+    // =====================================================================
+    // TAB 8: REGISTER STUDENT — JavaScript Functions
+    // =====================================================================
+    const MASTER_SKILLS = [
+      'Java', 'Python', 'SQL', 'JavaScript', 'C++',
+      'React.js', 'Node.js', 'Spring Boot', 'Flask / FastAPI',
+      'Pandas / NumPy', 'TensorFlow / PyTorch', 'Matplotlib / Seaborn',
+      'Git / GitHub', 'Docker', 'MongoDB', 'Flutter', 'HTML/CSS'
+    ];
+
+    function populateSkillCheckboxes() {
+      const container = document.getElementById('skillCheckboxes');
+      if (container.children.length > 0) return; // already populated
+      container.innerHTML = MASTER_SKILLS.map(skill => `
+        <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
+          <input type="checkbox" id="sk_${skill.replace(/[^a-zA-Z0-9]/g,'_')}" value="${skill}"
+            class="accent-indigo-600 w-3.5 h-3.5 cursor-pointer">
+          <label for="sk_${skill.replace(/[^a-zA-Z0-9]/g,'_')}" class="text-xs text-slate-700 cursor-pointer flex-1">${skill}</label>
+          <select class="skill-level text-[11px] border border-slate-200 rounded px-1 py-0.5 bg-white text-slate-600">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate" selected>Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+      `).join('');
+    }
+
+    function renderRegStudentList() {
+      const tbody = document.getElementById('regStudentTbody');
+      if (!tbody) return;
+      tbody.innerHTML = appData.students.map(s => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="px-3 py-2 font-mono text-indigo-700 font-semibold">${s.student_id}</td>
+          <td class="px-3 py-2 font-semibold text-slate-900">${s.name}</td>
+          <td class="px-3 py-2 text-slate-600">${s.class_name}</td>
+          <td class="px-3 py-2">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${s.section === 'A' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}">
+              Section ${s.section}
+            </span>
+          </td>
+          <td class="px-3 py-2">
+            <div class="flex flex-wrap gap-1">
+              ${(s.skills || []).slice(0, 3).map(sk => `<span class="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 text-[10px] font-medium">${sk.skill_name}</span>`).join('')}
+              ${(s.skills || []).length > 3 ? `<span class="text-slate-400 text-[10px]">+${s.skills.length - 3} more</span>` : ''}
+            </div>
+          </td>
+        </tr>
+      `).join('');
+      document.getElementById('statStudents').textContent = appData.students.length;
+    }
+
+    async function submitRegistration(e) {
+      e.preventDefault();
+      const banner = document.getElementById('regBanner');
+
+      const student = {
+        student_id: document.getElementById('regId').value.trim(),
+        name: document.getElementById('regName').value.trim(),
+        email: document.getElementById('regEmail').value.trim(),
+        department: 'Information Technology',
+        class_name: document.getElementById('regClass').value,
+        section: document.getElementById('regSection').value,
+        batch_year: '2025-2029'
+      };
+
+      // Validate unique register number
+      if (appData.students.find(s => s.student_id === student.student_id)) {
+        showBanner('⚠️ Register number ' + student.student_id + ' already exists in the system.', 'error');
+        return;
+      }
+
+      // Collect selected skills
+      const selectedSkills = [];
+      document.querySelectorAll('#skillCheckboxes input[type=checkbox]:checked').forEach(cb => {
+        const levelSel = cb.closest('div').querySelector('.skill-level');
+        selectedSkills.push({ skill_name: cb.value, proficiency_level: levelSel.value });
+      });
+
+      // Try POST to backend if server is running
+      let saved = false;
+      try {
+        const res = await fetch('/api/register_student', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ student, skills: selectedSkills }),
+          signal: AbortSignal.timeout(2000)
+        });
+        if (res.ok) { saved = true; }
+      } catch (_) { /* server not running — offline mode */ }
+
+      // Add to in-memory data (always)
+      student.skills = selectedSkills;
+      appData.students.push(student);
+      renderRegStudentList();
+      renderStudents();
+
+      showBanner(
+        saved
+          ? '✅ Student registered successfully and saved to database!'
+          : '✅ Student registered successfully! (Offline mode — data saved in this session)',
+        'success'
+      );
+      document.getElementById('regForm').reset();
+      document.getElementById('skillCheckboxes').innerHTML = '';
+      populateSkillCheckboxes();
+    }
+
+    function showBanner(msg, type) {
+      const b = document.getElementById('regBanner');
+      b.textContent = msg;
+      b.className = type === 'success'
+        ? 'mb-4 px-4 py-3 rounded-lg text-sm font-medium bg-emerald-50 text-emerald-800 border border-emerald-200'
+        : 'mb-4 px-4 py-3 rounded-lg text-sm font-medium bg-red-50 text-red-800 border border-red-200';
+      b.classList.remove('hidden');
+      setTimeout(() => b.classList.add('hidden'), 5000);
+    }
   </script>
 </body>
 </html>

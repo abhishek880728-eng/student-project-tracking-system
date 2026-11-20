@@ -129,6 +129,120 @@ class TrackingRequestHandler(SimpleHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
 
+    def do_OPTIONS(self):
+        """Handle CORS pre-flight requests."""
+        self.send_response(200)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
+
+    def do_POST(self):
+        parsed = urlparse(self.path)
+        path = parsed.path
+        content_len = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(content_len)
+        try:
+            payload = json.loads(body)
+        except Exception:
+            self.send_response(400)
+            self.end_headers()
+            return
+
+        if path == "/api/register_student":
+            self.handle_register_student(payload)
+        elif path == "/api/assign_skill":
+            self.handle_assign_skill(payload)
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def handle_register_student(self, payload):
+        """Insert a new student + their skills into the database."""
+        s = payload.get("student", {})
+        skills = payload.get("skills", [])
+        db_path = get_db_path()
+        try:
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT OR IGNORE INTO students
+                  (student_id, name, email, department, class_name, section, batch_year)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, (
+                s.get("student_id"),
+                s.get("name"),
+                s.get("email"),
+                s.get("department", "Information Technology"),
+                s.get("class_name", "25IT3A"),
+                s.get("section", "A"),
+                s.get("batch_year", "2025-2029"),
+            ))
+            # Assign skills
+            for sk in skills:
+                cursor.execute("SELECT skill_id FROM skills WHERE skill_name = ?", (sk.get("skill_name"),))
+                row = cursor.fetchone()
+                if row:
+                    skill_id = row[0]
+                else:
+                    cursor.execute(
+                        "INSERT INTO skills (skill_name, skill_category) VALUES (?, ?)",
+                        (sk.get("skill_name"), "General")
+                    )
+                    skill_id = cursor.lastrowid
+                cursor.execute("""
+                    INSERT OR IGNORE INTO student_skills (student_id, skill_id, proficiency_level)
+                    VALUES (?, ?, ?)
+                """, (s.get("student_id"), skill_id, sk.get("proficiency_level", "Intermediate")))
+            conn.commit()
+            conn.close()
+            response = {"success": True, "message": f"Student {s.get('name')} registered successfully."}
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps(response).encode("utf-8"))
+        except Exception as ex:
+            self.send_response(500)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": False, "error": str(ex)}).encode("utf-8"))
+
+    def handle_assign_skill(self, payload):
+        """Assign a skill to an existing student."""
+        student_id = payload.get("student_id")
+        skill_name = payload.get("skill_name")
+        proficiency = payload.get("proficiency_level", "Intermediate")
+        db_path = get_db_path()
+        try:
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute("SELECT skill_id FROM skills WHERE skill_name = ?", (skill_name,))
+            row = cursor.fetchone()
+            if row:
+                skill_id = row[0]
+            else:
+                cursor.execute("INSERT INTO skills (skill_name, skill_category) VALUES (?, ?)", (skill_name, "General"))
+                skill_id = cursor.lastrowid
+            cursor.execute("""
+                INSERT OR IGNORE INTO student_skills (student_id, skill_id, proficiency_level)
+                VALUES (?, ?, ?)
+            """, (student_id, skill_id, proficiency))
+            conn.commit()
+            conn.close()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": True, "message": "Skill assigned."}).encode("utf-8"))
+        except Exception as ex:
+            self.send_response(500)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": False, "error": str(ex)}).encode("utf-8"))
+
 def run_server():
     server_address = ("", PORT)
     httpd = HTTPServer(server_address, TrackingRequestHandler)
