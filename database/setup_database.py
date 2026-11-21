@@ -24,12 +24,21 @@ def initialize_database():
     print("=" * 70)
     print(f"[*] Target Database File: {db_path}")
 
-    # Connect to SQLite database
-    conn = sqlite3.connect(db_path)
+    # Remove stale journal file if it exists
+    journal_path = db_path + "-journal"
+    if os.path.exists(journal_path):
+        try:
+            os.remove(journal_path)
+        except Exception:
+            pass
+
+    # Connect to SQLite database with 30s busy timeout
+    conn = sqlite3.connect(db_path, timeout=30.0)
     cursor = conn.cursor()
 
-    # Enable foreign keys
+    # Enable foreign keys and busy timeout
     cursor.execute("PRAGMA foreign_keys = ON;")
+    cursor.execute("PRAGMA busy_timeout = 30000;")
 
     # Execute schema
     print(f"[*] Reading and applying schema: {schema_path}")
