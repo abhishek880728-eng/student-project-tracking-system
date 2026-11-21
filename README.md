@@ -45,7 +45,13 @@ d:\project 1\
 │   ├── SYSTEM_DESIGN.md                # System Architecture, UML Use Case, Class & Sequence Diagrams
 │   ├── DATABASE_DESIGN.md              # ER Diagram, Relational Model & 3NF/BCNF Normalization
 │   ├── TESTING_DOCUMENT.md             # Verification & Validation: 19 Black/White-box Test Cases
-│   └── LOC_METRICS_REPORT.md           # Unit 5 LOC, SLOC, and COCOMO Estimation Audit Report
+│   ├── LOC_METRICS_REPORT.md           # Unit 5 LOC, SLOC, and COCOMO Estimation Audit Report
+│   └── diagrams\                       # UML 2.0 Architectural & Workflow Visual Models
+│       ├── component_diagram.png       # UML Component Diagram (Ports, Provided/Required Interfaces)
+│       ├── component_diagram.svg       # Scalable Vector Graphics Component Diagram
+│       ├── activity_diagram.png        # UML Activity Diagram (Fork-Join Concurrency, Decision Guards)
+│       └── activity_diagram.svg        # Scalable Vector Graphics Activity Diagram
+├── generate_uml_diagrams.py            # Automated UML Component & Activity Diagram Generator
 ├── calculate_loc.py                    # Automated Lines of Code (LOC) & Metrics Calculator
 ├── index.html                          # Root Web Portal for Instant GitHub Pages Hosting
 ├── launch_website.bat                  # One-Click Local Web Portal Launcher

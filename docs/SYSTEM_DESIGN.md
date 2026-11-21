@@ -358,3 +358,116 @@ stateDiagram-v2
     Under_Review --> Completed : Final Viva Cleared & Code Accepted
     Completed --> [*] : Archived in Department Repository
 ```
+
+---
+
+## 6. UML 2.0 Component Diagram
+
+The UML Component Diagram models the modular runtime organization and wiring of the **Student Project and Skill Tracking System**, conforming to IEEE/ISO component-based software engineering standards.
+
+![UML 2.0 Component Diagram](diagrams/component_diagram.png)
+
+### 6.1 Component & Interface Specification Table
+
+| Element Type | Notation & Symbol | Identifier | Role & Function in System |
+|:---|:---|:---|:---|
+| **Subsystem Container** | `<<component>>` Large Rectangle | `Student Project Tracking System` | Encapsulates internal business logic and hides implementation details from external actors. |
+| **Central Core Component** | `<<component>>` Center Box | `ProjectTrackingEngine` | Coordinates project proposals, milestone validation, evaluation computations, and data queries. |
+| **Auxiliary Component** | `<<component>>` Top-Right Box | `Student & Faculty Module` | Manages student profiles, technical skills taxonomy, faculty mentor allocations, and user roles. |
+| **Auxiliary Component** | `<<component>>` Bottom-Left Box | `SkillGapAnalyzer` | Detects deficiencies between student proficiency levels and required project tech stacks. |
+| **Auxiliary Component** | `<<component>>` Bottom-Right Box | `MilestoneScheduler` | Provisions 5 default academic milestones and computes completion percentages. |
+| **Boundary Port** | Small Square `[ ]` on Border | `Port (Left & Right)` | Explicit interaction point mediating communication between external interfaces and internal logic. |
+| **Provided Interface** | Lollipop / Ball `—(O)` | `Student Profile`, `Project Details`, `Evaluation Rubrics` | Services, APIs, and data models supplied by the system for clients, students, and faculty. |
+| **Required Interface** | Socket / Arc `—(C)` | `Account / DBMS Auth`, `Project ID / Audit Record` | Services demanded by the system from external subsystems (e.g., SQLite engine, PDF export engine). |
+| **Assembly Connector** | Ball-and-Socket `—(O—(C—` | `Faculty Guide`, `Milestones`, `Defect/Gap details`, `User Role` | Runtime binding linking a provided interface of one component directly to the required interface of another. |
+
+### 6.2 Component Wiring & Data Flow (Mermaid Equivalent)
+
+```mermaid
+graph LR
+    subgraph System_Container ["<<component>> Student Project Tracking System"]
+        subgraph Ports_In ["Inbound Boundary Ports"]
+            P1["Port: Student Profile"]
+            P2["Port: Project Proposal"]
+            P3["Port: Evaluation Rubrics"]
+        end
+
+        Core["<<component>>\nProjectTrackingEngine"]
+        Staff["<<component>>\nStudent & Faculty Module"]
+        Defect["<<component>>\nSkillGapAnalyzer"]
+        MapMod["<<component>>\nMilestoneScheduler"]
+
+        subgraph Ports_Out ["Outbound Boundary Ports"]
+            P4["Port: DBMS Persistence"]
+            P5["Port: Audit & PDF Export"]
+        end
+
+        P1 --> Core
+        P2 --> Core
+        P3 --> Defect
+        Core <--> Staff
+        Core <--> MapMod
+        Core <--> Defect
+        Staff --> P4
+        Core --> P5
+    end
+
+    Ext_Student(["Provided: Student Profile API"]) --- P1
+    Ext_Project(["Provided: Project Proposal API"]) --- P2
+    Ext_Eval(["Provided: Evaluation Marks API"]) --- P3
+
+    P4 --- Ext_DB(["Required: SQLite / MySQL Storage"])
+    P5 --- Ext_Report(["Required: PDF Audit Report Engine"])
+```
+
+---
+
+## 7. UML 2.0 Activity Diagram
+
+The UML Activity Diagram defines the parallel control flow and business process logic governing **Project Registration & Evaluation Workflow**, utilizing concurrent fork-join synchronization, conditional branch guards, and activity final termination.
+
+![UML 2.0 Activity Diagram](diagrams/activity_diagram.png)
+
+### 7.1 Workflow State & Decision Logic Breakdown
+
+1. **Initial Node (`●`):** The workflow initiates when a student submits a new mini-project proposal.
+2. **Action State (`Receive Project Proposal`):** The system parses student credentials, project title, domain classification, abstract, and declared tech stack.
+3. **Synchronization Fork Bar (Thick Horizontal Bar):** The execution thread branches concurrently into two independent parallel processing pipelines:
+   - **Branch 1: Technical Stack & Competency Verification:**
+     - **Action (`Verify Tech Stack & Skills`):** Queries student's recorded competencies against the declared technologies.
+     - **Decision Diamond (`Condition Check`):**
+       - `[skill gap found]`: Routes to **`Flag Remedial Mentoring`**, alerting the faculty mentor and scheduling tutorial milestones.
+       - `[skills verified]`: Routes to **`Approve Technical Feasibility`**, confirming direct competency alignment.
+     - **Merge Diamond:** Merges the conditional pathways back into a unified technical approval status.
+   - **Branch 2: Academic Governance & Milestone Setup:**
+     - **Action (`Auto-Provision 5 Academic Milestones`):** Generates standard academic deliverables (SRS, UML Design, Implementation, Analytics, Final Viva) with due dates.
+     - **Action (`Assign Faculty Review Committee`):** Maps departmental evaluators and assigns assessment rubrics.
+4. **Synchronization Join Bar (Thick Horizontal Bar):** Waits for both the technical competency analysis and the administrative milestone scheduling to complete successfully.
+5. **Activity Final Node (`◉` Bullseye):** Commits the project record into `database/tracking_system.db`, marks initial status as `In Progress`, and issues confirmation to the student.
+
+### 7.2 Activity Flow Modeling (Mermaid Equivalent)
+
+```mermaid
+flowchart TD
+    Start(("●")) --> Recv["Receive Project Proposal"]
+    Recv --> ForkBar["═══════════════════════════════════\n[Synchronization Fork Bar]\n═══════════════════════════════════"]
+
+    %% Left Parallel Branch: Technical Analysis & Gap Check
+    ForkBar --> Verify["Verify Tech Stack & Skills"]
+    Verify --> Decision{"Skill Assessment"}
+    Decision -->|"[skill gap found]"| Remedial["Flag Remedial Mentoring"]
+    Decision -->|"[skills verified]"| Feasible["Approve Technical Feasibility"]
+    Remedial --> MergeNode{" "}
+    Feasible --> MergeNode{" "}
+
+    %% Right Parallel Branch: Administrative Governance & Milestones
+    ForkBar --> Milestones["Auto-Provision 5 Academic Milestones"]
+    Milestones --> AssignFac["Assign Faculty Review Committee"]
+
+    %% Synchronization Join
+    MergeNode --> JoinBar["═══════════════════════════════════\n[Synchronization Join Bar]\n═══════════════════════════════════"]
+    AssignFac --> JoinBar
+
+    JoinBar --> EndNode((("◉")))
+```
+

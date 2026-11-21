@@ -34,8 +34,8 @@ def get_db_path():
 
 class TrackingRequestHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
-        directory = os.path.dirname(os.path.abspath(__file__))
-        super().__init__(*args, directory=directory, **kwargs)
+        root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        super().__init__(*args, directory=root_dir, **kwargs)
 
     def do_GET(self):
         parsed = urlparse(self.path)
