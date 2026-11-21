@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body { font-family: 'Inter', sans-serif; }
     .badge-adv { background-color: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
@@ -638,21 +639,29 @@
     fetch('/api/projects').then(res => res.json()).then(data => { appData.projects = data; renderProjects(); }).catch(() => {});
     fetch('/api/students').then(res => res.json()).then(data => { appData.students = data; renderStudents(); populateGapSelector(); }).catch(() => {});
 
-    function switchTab(tabId) {
+    function switchTab(tabId, ev) {
+      const e = ev || window.event;
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.getElementById('tab-' + tabId).classList.remove('hidden');
+      const targetPanel = document.getElementById('tab-' + tabId);
+      if (targetPanel) targetPanel.classList.remove('hidden');
 
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active', 'text-indigo-600', 'bg-indigo-50', 'text-white', 'bg-indigo-600', 'hover:bg-indigo-700', 'shadow-sm');
         btn.classList.add('text-slate-600');
       });
-      event.currentTarget.classList.add('active', 'text-indigo-600', 'bg-indigo-50');
-      event.currentTarget.classList.remove('text-slate-600');
+
+      const activeBtn = (e && e.currentTarget) ? e.currentTarget : document.querySelector(`[onclick*="'${tabId}'"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'text-indigo-600', 'bg-indigo-50');
+        activeBtn.classList.remove('text-slate-600');
+      }
 
       // If register tab opened, populate skill checkboxes & refresh student list
       if (tabId === 'register') {
         populateSkillCheckboxes();
         renderRegStudentList();
+      } else if (tabId === 'report') {
+        renderReports();
       }
     }
 
@@ -892,8 +901,10 @@
         }
       });
 
-      // Render registration student list on page load
+      // Render registration student list, skills and reports on page load
       renderRegStudentList();
+      populateSkillCheckboxes();
+      renderReports();
     });
 
     // =====================================================================
@@ -908,7 +919,7 @@
 
     function populateSkillCheckboxes() {
       const container = document.getElementById('skillCheckboxes');
-      if (container.children.length > 0) return; // already populated
+      if (!container || container.children.length > 0) return; // already populated
       container.innerHTML = MASTER_SKILLS.map(skill => `
         <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
           <input type="checkbox" id="sk_${skill.replace(/[^a-zA-Z0-9]/g,'_')}" value="${skill}"
@@ -944,7 +955,8 @@
           </td>
         </tr>
       `).join('');
-      document.getElementById('statStudents').textContent = appData.students.length;
+      const statEl = document.getElementById('statStudents');
+      if (statEl) statEl.textContent = appData.students.length;
     }
 
     async function submitRegistration(e) {
@@ -971,7 +983,7 @@
       const selectedSkills = [];
       document.querySelectorAll('#skillCheckboxes input[type=checkbox]:checked').forEach(cb => {
         const levelSel = cb.closest('div').querySelector('.skill-level');
-        selectedSkills.push({ skill_name: cb.value, proficiency_level: levelSel.value });
+        selectedSkills.push({ skill_name: cb.value, proficiency_level: levelSel ? levelSel.value : 'Intermediate' });
       });
 
       // Try POST to backend if server is running
@@ -981,12 +993,12 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ student, skills: selectedSkills }),
-          signal: AbortSignal.timeout(2000)
+          signal: AbortSignal.timeout(1500)
         });
         if (res.ok) { saved = true; }
-      } catch (_) { /* server not running — offline mode */ }
+      } catch (_) { /* offline mode */ }
 
-      // Add to in-memory data (always)
+      // Add to in-memory data
       student.skills = selectedSkills;
       appData.students.push(student);
       renderRegStudentList();
@@ -999,12 +1011,14 @@
         'success'
       );
       document.getElementById('regForm').reset();
-      document.getElementById('skillCheckboxes').innerHTML = '';
+      const skBox = document.getElementById('skillCheckboxes');
+      if (skBox) skBox.innerHTML = '';
       populateSkillCheckboxes();
     }
 
     function showBanner(msg, type) {
       const b = document.getElementById('regBanner');
+      if (!b) return;
       b.textContent = msg;
       b.className = type === 'success'
         ? 'mb-4 px-4 py-3 rounded-lg text-sm font-medium bg-emerald-50 text-emerald-800 border border-emerald-200'
@@ -1012,80 +1026,118 @@
       b.classList.remove('hidden');
       setTimeout(() => b.classList.add('hidden'), 5000);
     }
-    <!-- Include jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script>
-      // Existing DOMContentLoaded wrapper already present – we will extend it
-      window.addEventListener('DOMContentLoaded', () => {
-        // Existing init calls...
-        renderProjects();
-        renderStudents();
-        renderEvaluations();
-        populateGapSelector();
-        // New init for report tab
-        renderReports();
+
+    // =====================================================================
+    // TAB 9: PROJECT REPORT GENERATOR — JavaScript Functions
+    // =====================================================================
+    function renderReports() {
+      const tbody = document.getElementById('reportTbody');
+      if (!tbody) return;
+      tbody.innerHTML = appData.projects.map(p => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="px-3 py-2 font-mono text-indigo-700 font-semibold">${p.project_id}</td>
+          <td class="px-3 py-2 font-medium text-slate-800">${p.project_title}</td>
+          <td class="px-3 py-2 text-slate-600">${p.student_name}</td>
+          <td class="px-3 py-2">
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-semibold">${p.domain}</span>
+          </td>
+          <td class="px-3 py-2">
+            <button onclick="generatePDF(${p.project_id})" class="px-2.5 py-1 text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded shadow-sm transition inline-flex items-center gap-1">
+              📄 Download PDF
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function generatePDF(projectId) {
+      const proj = appData.projects.find(p => p.project_id === projectId);
+      if (!proj) return alert('Project not found');
+      const { jsPDF } = window.jspdf || {};
+      if (!jsPDF) {
+        alert('jsPDF library loading... Please ensure you are connected to internet.');
+        return;
+      }
+      const doc = new jsPDF();
+      let y = 14;
+
+      doc.setFontSize(16);
+      doc.setTextColor(30, 41, 59);
+      doc.text('VELALAR COLLEGE OF ENGINEERING AND TECHNOLOGY', 105, y, { align: 'center' });
+      y += 6;
+      doc.setFontSize(11);
+      doc.setTextColor(71, 85, 105);
+      doc.text('Department of Information Technology — Student Project Dossier', 105, y, { align: 'center' });
+      y += 10;
+      doc.setDrawColor(203, 213, 225);
+      doc.line(14, y, 196, y);
+      y += 8;
+
+      doc.setFontSize(12);
+      doc.setTextColor(15, 23, 42);
+      doc.text(`Project ID: #${proj.project_id}`, 14, y);
+      y += 7;
+      doc.text(`Project Title: ${proj.project_title}`, 14, y);
+      y += 7;
+      doc.text(`Author / Student: ${proj.student_name} (${proj.student_id})`, 14, y);
+      y += 7;
+      doc.text(`Engineering Domain: ${proj.domain}`, 14, y);
+      y += 7;
+      doc.text(`Lifecycle Status: ${proj.status} (${proj.progress_pct}% Completed)`, 14, y);
+      y += 7;
+      doc.text(`Technology Stack: ${proj.technologies_used || 'Standard'}`, 14, y);
+      y += 10;
+
+      doc.setFontSize(11);
+      doc.setTextColor(71, 85, 105);
+      doc.text('Project Abstract:', 14, y);
+      y += 6;
+      doc.setFontSize(9.5);
+      doc.setTextColor(51, 65, 85);
+      const splitDesc = doc.splitTextToSize(proj.description || 'Standard academic coursework project.', 180);
+      doc.text(splitDesc, 14, y);
+      y += splitDesc.length * 5 + 6;
+
+      doc.setFontSize(11);
+      doc.setTextColor(71, 85, 105);
+      doc.text('Academic Milestones:', 14, y);
+      y += 6;
+      (proj.milestones || []).forEach(m => {
+        doc.setFontSize(9);
+        doc.setTextColor(51, 65, 85);
+        doc.text(`• ${m.milestone_name} (Due: ${m.due_date || 'N/A'}) — Status: ${m.status}`, 16, y);
+        y += 5.5;
       });
+      if (!proj.milestones || proj.milestones.length === 0) {
+        doc.setFontSize(9);
+        doc.text('• 5 Standard academic milestones scheduled.', 16, y);
+        y += 5.5;
+      }
+      y += 4;
 
-      function renderReports() {
-        const tbody = document.getElementById('reportTbody');
-        if (!tbody) return;
-        tbody.innerHTML = appData.projects.map(p => `
-          <tr class="hover:bg-slate-50 transition">
-            <td class="px-3 py-2 font-mono text-indigo-700 font-semibold">${p.project_id}</td>
-            <td class="px-3 py-2">${p.project_title}</td>
-            <td class="px-3 py-2">${p.student_name}</td>
-            <td class="px-3 py-2">${p.domain}</td>
-            <td class="px-3 py-2">
-              <button onclick="generatePDF(${p.project_id})" class="px-2 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700 transition">PDF</button>
-            </td>
-          </tr>
-        `).join('');
+      doc.setFontSize(11);
+      doc.setTextColor(71, 85, 105);
+      doc.text('Component Evaluation Scores:', 14, y);
+      y += 6;
+      (proj.evaluations || []).forEach(e => {
+        doc.setFontSize(9);
+        doc.setTextColor(51, 65, 85);
+        doc.text(`• ${e.component_name}: ${e.obtained_marks}/${e.max_marks} marks (Evaluator: ${e.evaluator_name || 'Faculty Committee'})`, 16, y);
+        y += 5.5;
+      });
+      if (!proj.evaluations || proj.evaluations.length === 0) {
+        doc.setFontSize(9);
+        doc.text('• Formal evaluations pending scheduled review.', 16, y);
+        y += 5.5;
       }
 
-      async function generatePDF(projectId) {
-        const proj = appData.projects.find(p => p.project_id === projectId);
-        if (!proj) return alert('Project not found');
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        let y = 10;
-        doc.setFontSize(16);
-        doc.text('Student Project Report', 105, y, { align: 'center' });
-        y += 10;
-        doc.setFontSize(12);
-        doc.text(`Project ID: ${proj.project_id}`, 10, y);
-        y += 7;
-        doc.text(`Title: ${proj.project_title}`, 10, y);
-        y += 7;
-        doc.text(`Student: ${proj.student_name} (${proj.student_id})`, 10, y);
-        y += 7;
-        doc.text(`Domain: ${proj.domain}`, 10, y);
-        y += 7;
-        doc.text(`Status: ${proj.status} (${proj.progress_pct}% complete)`, 10, y);
-        y += 10;
-        doc.text('Description:', 10, y);
-        y += 7;
-        doc.setFontSize(10);
-        doc.text(proj.description || 'N/A', 10, y);
-        y += 10;
-        doc.setFontSize(12);
-        doc.text('Milestones:', 10, y);
-        y += 7;
-        (proj.milestones || []).forEach(m => {
-          doc.setFontSize(10);
-          doc.text(`- ${m.milestone_name} (Due: ${m.due_date}) – ${m.status}`, 12, y);
-          y += 6;
-        });
-        y += 5;
-        doc.setFontSize(12);
-        doc.text('Evaluations:', 10, y);
-        y += 7;
-        (proj.evaluations || []).forEach(e => {
-          doc.setFontSize(10);
-          doc.text(`- ${e.component_name}: ${e.obtained_marks}/${e.max_marks} by ${e.evaluator_name}`, 12, y);
-          y += 6;
-        });
-        doc.save(`Project_${proj.project_id}_Report.pdf`);
-      }
-    </script>
-    </body>
-    </html>
+      y += 10;
+      doc.setFontSize(8);
+      doc.setTextColor(148, 163, 184);
+      doc.text('Generated from Student Project & Skill Tracking System | VCET IT (Autonomous)', 105, y, { align: 'center' });
+
+      doc.save(`Project_${proj.project_id}_Report.pdf`);
+    }
+  </script>
+</body>
+</html>

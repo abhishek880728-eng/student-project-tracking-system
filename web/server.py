@@ -15,7 +15,7 @@ import sys
 import json
 import sqlite3
 import webbrowser
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse
 
 PORT = 8080
@@ -36,6 +36,13 @@ class TrackingRequestHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         super().__init__(*args, directory=root_dir, **kwargs)
+
+    def end_headers(self):
+        if self.path.endswith(('.png', '.svg', '.jpg', '.jpeg', '.css', '.js', '.ico')):
+            self.send_header('Cache-Control', 'public, max-age=3600')
+        elif self.path.startswith('/api/'):
+            self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
+        super().end_headers()
 
     def do_GET(self):
         parsed = urlparse(self.path)
@@ -243,13 +250,18 @@ class TrackingRequestHandler(SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps({"success": False, "error": str(ex)}).encode("utf-8"))
 
+class ReusableThreadingServer(ThreadingHTTPServer):
+    allow_reuse_address = True
+    daemon_threads = True
+
 def run_server():
     server_address = ("", PORT)
-    httpd = HTTPServer(server_address, TrackingRequestHandler)
+    httpd = ReusableThreadingServer(server_address, TrackingRequestHandler)
     print("=" * 75)
     print("  VCET IT :: STUDENT PROJECT & SKILL TRACKING WEB PORTAL")
     print("  Student: Abhishek.R (732925ITR002) - Class: 25IT3A")
     print(f"  Server listening at: http://localhost:{PORT}")
+    print("  Mode: High-Performance Multi-Threaded HTTP Server")
     print("=" * 75)
     webbrowser.open(f"http://localhost:{PORT}")
     try:
